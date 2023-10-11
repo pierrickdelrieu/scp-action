@@ -36,4 +36,5 @@ outputs: {}
 
 branding:
   icon: "upload-cloud"
+  color: blue
 
