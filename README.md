@@ -50,14 +50,18 @@ This informations are also present in the [action.yml](./action.yml) file.
 
 |        Options        | Type | Description | Default | Required |
 |-----------------------|------|-------------|---------|----------|
-| host | string | The remote host where you want to copy files. |  | X |
+| host | string | The remote host where you want to copy files. |  | **X** |
 | ssh_port | integer | The remote port to use for SSH.  | 22 |  |
-| ssh_username | string | Your SSH username for authentication. |  | X |
-| ssh_key | string | Your SSH key for authentication. |  | X |
+| ssh_username | string | Your SSH username for authentication. |  | **X** |
+| ssh_key | string | Your SSH key for authentication. |  | **X** |
 | ssh_passphrase | string | The passphrase for your SSH key (if applicable). |  |  |
 | source_dir | string | The local source directory from your repository. | ./ |  |
-| destination_dir | string | The remote destination directory on the server. |  | X |
+| destination_dir | string | The remote destination directory on the server. |  | **X** |
 | rm | boolean | Whether to remove the content of the target folder on the remote server before uploading data | false |  |
+
+💡 It is recommended to put the variables that you define as secrets in the repository. To do this, head to `settings/Security/Secrets and Variables/Actions`.
+
+[Github Action Secrets](https://docs.github.com/en/rest/actions/secrets)
 
 
 ## Settings up SSH KEY
