@@ -1,0 +1,24 @@
+name: Test Copy Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Copy to Remote Server
+      uses: ./ 
+      with:
+        host: ${{ secrets.DESTINATION_HOST }}
+        ssh_port: ${{ secrets.DESTINATION_SSH_PORT }}
+        ssh_username: ${{ secrets.SSH_USERNAME }}
+        ssh_key: ${{ secrets.SSH_KEY }}
+        ssh_passpharse: ${{ secrets.SSH_PASSPHRASE }}
+        source_dir: ${{ secrets.SOURCE_FOLDER }}
+        destination_dir: ${{ secrets.DESTINATION_FOLDER }}
