@@ -13,9 +13,13 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Copy to Remote Server
-      uses: ./ # Utilise l'action locale
+      uses: ./ 
       with:
-        source_dir: ./example_folder
-        destination_server: ${{ secrets.DESTINATION_SERVER }}
-        destination_dir: /path/to/destination
+        host: ${{ secrets.DESTINATION_HOST }}
+        ssh_port: ${{ secrets.DESTINATION_SSH_PORT }}
+        ssh_username: ${{ secrets.SSH_USERNAME }}
         ssh_key: ${{ secrets.SSH_KEY }}
+        ssh_passpharse: ${{ secrets.SSH_PASSPHRASE }}
+        source_dir: ${{ secrets.SOURCE_FOLDER }}
+        destination_dir: ${{ secrets.DESTINATION_FOLDER }}
+        
