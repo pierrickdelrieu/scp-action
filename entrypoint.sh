@@ -28,4 +28,4 @@ chmod 600 /root/ssh_passphrase
 
 
 # Copy files to the remote server
-sshpass -p /root/ssh_passphrase scp -P "${SSH_PORT}" -i /root/ssh_key -r "${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
+sshpass -p /root/ssh_passphrase scp -P "${SSH_PORT}" -i /root/ssh_key -o StrictHostKeyChecking=no -r "${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
