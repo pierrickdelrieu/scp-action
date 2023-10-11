@@ -10,7 +10,7 @@ inputs:
   host:
     description: 'Remote host'
     required: true
-  port: 
+  ssh_port: 
     description: 'Remote port'
     default: 22
   ssh_username:
@@ -19,7 +19,7 @@ inputs:
   ssh_key:
     description: 'SSH Key for authentification'
     required: true
-  passphrase:
+  ssh_passphrase:
     description: 'ssh key passphrase'
   source_dir:
     description: "Source directory to copy"
