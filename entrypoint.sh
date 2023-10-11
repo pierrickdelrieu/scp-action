@@ -20,5 +20,6 @@ SCP_OPTIONS="-i $SSH_KEY -p "$SSH_PORT""
 #    ssh -p "${SSH_PORT}" -i "${SSH_KEY}" -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" "${SSH_USERNAME}@${HOST}" "rm -rf ${DESTINATION_DIR}"
 #fi
 
+echo "${SSH_KEY}" > id_rsa
 # Copy files to the remote server
-sshpass -p '${SSH_PASSPHRASE}' scp -P "${SSH_PORT}" -i "${SSH_KEY}" -r "${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
+sshpass -p '${SSH_PASSPHRASE}' scp -P "${SSH_PORT}" -i id_rsa -r "${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
