@@ -11,4 +11,7 @@ PASSPHRASE="${INPUT_PASSPHRASE"
 ssh -i "$SSH_KEY" "$DESTINATION_SERVER" "rm -rf $DESTINATION_DIR/*"
 
 # Copier le contenu du dossier source vers le serveur distant
-rsync -avz -e "ssh -i $SSH_KEY" "$SOURCE_DIR/" "$DESTINATION_SERVER:$DESTINATION_DIR/"
+# rsync -avz -e "ssh -i $SSH_KEY" "$SOURCE_DIR/" "$DESTINATION_SERVER:$DESTINATION_DIR/"
+
+# Utiliser SCP pour copier le contenu du dossier source vers le serveur distant
+scp -i "$SSH_KEY" -r "$SOURCE_DIR" "$DESTINATION_SERVER:$DESTINATION_DIR"
