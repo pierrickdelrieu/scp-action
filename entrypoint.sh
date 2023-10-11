@@ -30,6 +30,7 @@ chmod 600 $HOME/.ssh/id_rsa
 #fi
 echo $HOME/.ssh/id_rsa
 echo "$GITHUB_WORKSPACE/${SOURCE_DIR}"
+echo $GITHUB_WORKSPACE/${SOURCE_DIR}/file1.txt
 
 
 # Copy files to the remote server
