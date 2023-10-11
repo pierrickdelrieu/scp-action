@@ -28,10 +28,10 @@ ssh-add $HOME/.ssh/id_rsa < $HOME/.ssh/passphrase
 
 # Check if the remove flag is set
 if [ "${REMOVE_DIR}" = true ]; then
-    ssh -p "${SSH_PORT}" -i "${SSH_KEY}" -o "StrictHostKeyChecking=no" "${SSH_USERNAME}@${HOST}" "rm -rf ${DESTINATION_DIR}"
+    ssh -p "${SSH_PORT}" -i "${SSH_KEY}" -o "StrictHostKeyChecking=no" "${SSH_USERNAME}@${HOST}" "rm -rf ${DESTINATION_DIR}/*"
 fi
 
 
 
-scp -i $HOME/.ssh/id_rsa -P "${SSH_PORT}" -o StrictHostKeyChecking=no -r "$GITHUB_WORKSPACE/${SOURCE_DIR}/*" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
+scp -i $HOME/.ssh/id_rsa -P "${SSH_PORT}" -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE/${SOURCE_DIR}/* "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
 
