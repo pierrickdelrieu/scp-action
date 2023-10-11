@@ -66,6 +66,42 @@ This informations are also present in the [action.yml](./action.yml) file.
 
 
 ## Settings up SSH KEY
+Here's a step-by-step tutorial on how to set up an SSH key after creating a user on a machine:
+
+**- Step 1: Create a New User (if not already created)**
+If you haven't already created a user on the machine, you can do so with the following command (replace <username> with your desired username):
+```bash
+Copy code
+sudo adduser <username>
+```
+
+**-Step 2: Log In as the New User**
+You can log in as the new user using the following command (replace <username> with the username you created):
+```bash
+su - <username>
+```
+
+**-Step 3: Generate SSH Key Pair**
+Now, let's generate an SSH key pair. The key pair consists of a private key (which you keep on your local machine) and a public key (which you copy to the remote machine).
+Run the following command to generate the key pair. Make sure to replace <your_email@example.com> :
+```bash
+Copy code
+ssh-keygen -t rsa -b 4096 -C "<your_email@example.com>"
+```
+This command will prompt you to enter a file where you want to save the key. By default, it will be saved in ~/.ssh/id_rsa or /home/<username>/.ssh/id_rsa. You can leave it as the default or specify a custom location.
+
+
+**- Step 4:**
+You'll need to copy the public key to the remote machine where you want to log in.
+```bash
+cat .ssh/id_rsa.pub | ssh <username>@<remote_host> 'cat >> .ssh/authorized_keys'
+```
+
+After that, you can disbale the authentification with password and enable the authentification with key in `/etc/ssh/sshd_config`.
+
+
+Finish ! You can copy the private key (id_rsa) to the INPUT `ssh_key`
+
 
 ## License
 
@@ -73,6 +109,6 @@ This action is released under the [MIT License](LICENSE).
 
 ## Author
 
-- [Pierrick Delrieu](https://pierrickdelrieu.com)
+[Pierrick Delrieu](https://pierrickdelrieu.com)
 
 
