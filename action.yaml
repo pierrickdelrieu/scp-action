@@ -37,6 +37,3 @@ outputs: {}
 branding:
   icon: "upload-cloud"
 
-permissions:
-  contents: read
-
