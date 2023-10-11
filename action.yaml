@@ -1,23 +1,36 @@
 name: Copy to Remote Server via SCP
 description: Copy files from a specified directory to a remote server via SCP.
+author: Pierrick Delrieu
 
 runs:
   using: "docker"
   image: "Dockerfile"
 
 inputs:
+  host:
+    description: 'Remote host'
+    required: true
+  port: 
+    description: 'Remote port'
+    default: 22
+  ssh_username:
+    description: 'SSH username'
+    required: true
+  ssh_key:
+    description: 'SSH Key for authentification'
+    required: true
+  passphrase:
+    description: 'ssh key passphrase'
   source_dir:
     description: "Source directory to copy"
-    required: true
-  destination_server:
-    description: "Remote server address (e.g., user@hostname)"
     required: true
   destination_dir:
     description: "Remote server destination directory"
     required: true
-  ssh_key:
-    description: "SSH key for authentication"
-    required: true
+  rm:
+    description: 'remove target folder before upload data'
+    default: false
+
 
 outputs: {}
 
