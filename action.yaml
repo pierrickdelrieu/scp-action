@@ -1,4 +1,4 @@
-name: Copy to Remote Server via SCP
+name: Copy folder in repository to Remote Server via SCP
 description: Copy files from a specified directory to a remote server via SCP.
 author: Pierrick Delrieu
 
