@@ -28,13 +28,27 @@ chmod 600 $HOME/.ssh/id_rsa
 #if [ -n "$SSH_PASSPHRASE" ]; then
 #  echo "$SSH_PASSPHRASE" | ssh-add -
 #fi
-echo $HOME/.ssh/id_rsa
-echo "$GITHUB_WORKSPACE/${SOURCE_DIR}"
-echo $GITHUB_WORKSPACE/${SOURCE_DIR}/file1.txt
+#echo $HOME/.ssh/id_rsa
+#echo "$GITHUB_WORKSPACE/${SOURCE_DIR}"
+#echo $GITHUB_WORKSPACE/${SOURCE_DIR}/file1.txt
 
 
 # Copy files to the remote server
 #sshpass -p /root/ssh_passphrase scp -P "${SSH_PORT}" -i /root/ssh_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -o ServerAliveInterval=30 -r "$GITHUB_WORKSPACE/${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
 #sshpass -p ${SSH_PASSPHRASE} scp -P "${SSH_PORT}" -i /root/ssh_key -o StrictHostKeyChecking=no -o ConnectTimeout=30 -o ServerAliveInterval=30 -r "$GITHUB_WORKSPACE/${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
-sshpass -p "${SSH_PASSPHRASE}" scp -i $HOME/.ssh/id_rsa -P "${SSH_PORT}" -o StrictHostKeyChecking=no -o ConnectTimeout=30 -o ServerAliveInterval=30 -r "$GITHUB_WORKSPACE/${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
+#sshpass -p "${SSH_PASSPHRASE}" scp -i $HOME/.ssh/id_rsa -P "${SSH_PORT}" -o StrictHostKeyChecking=no -o ConnectTimeout=30 -o ServerAliveInterval=30 -r "$GITHUB_WORKSPACE/${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
+
+
+
+# Create an SSH key file
+echo "$SSH_KEY" > $HOME/.ssh/id_rsa
+chmod 600 $HOME/.ssh/id_rsa
+
+# Create a passphrase file
+echo "$SSH_PASSPHRASE" > $HOME/.ssh/passphrase
+
+# Add the key with passphrase to the SSH agent
+eval $(ssh-agent -s)
+ssh-add $HOME/.ssh/id_rsa < $HOME/.ssh/passphrase
+scp -i $HOME/.ssh/id_rsa -P "${SSH_PORT}" -o StrictHostKeyChecking=no -r "$GITHUB_WORKSPACE/${SOURCE_DIR}" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
 
