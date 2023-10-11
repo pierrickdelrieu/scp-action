@@ -1,6 +1,7 @@
-# Copy Folder to Remote Server via SCP GitHub Action
+#  Copy Folder to Remote Server via SCP GitHub Action
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pierrickdelrieu/scp-action/Copy%20Folder%20to%20Remote%20Server%20via%20SCP%20Action)
+![Version](https://img.shields.io/github/v/release/pierrickdelrieu/scp-action)
+![Issues](https://img.shields.io/github/issues/pierrickdelrieu/scp-action)
 ![GitHub](https://img.shields.io/github/license/pierrickdelrieu/scp-action)
 
 
