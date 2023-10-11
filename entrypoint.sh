@@ -1,28 +1,24 @@
 #!/bin/sh
 
-# Variables d'entrée
-SOURCE_DIR="${INPUT_SOURCE_DIR}"
-DESTINATION_SERVER="${INPUT_DESTINATION_SERVER}"
-DESTINATION_DIR="${INPUT_DESTINATION_DIR}"
-SSH_KEY="${INPUT_SSH_KEY}"
-PASSPHRASE="${INPUT_PASSPHRASE}"
+# Inputs from the action.yaml file
+HOST="$INPUT_HOST"
+SSH_PORT="$INPUT_SSH_PORT"
+SSH_USERNAME="$INPUT_SSH_USERNAME"
+SSH_KEY="$INPUT_SSH_KEY"
+SSH_PASSPHRASE="$INPUT_SSH_PASSPHRASE"
+SOURCE_DIR="$INPUT_SOURCE_DIR"
+DESTINATION_DIR="$INPUT_DESTINATION_DIR"
+REMOVE_DIR="$INPUT_RM"
 
 
 # Prepare options for SCP command
-SCP_OPTIONS="-i $SSH_KEY"
+SCP_OPTIONS="-i $SSH_KEY -p "$SSH_PORT""
 
-# Add passphrase to the SCP options if provided
-if [ -n "$PASSPHRASE" ]; then
-  SCP_OPTIONS="$SCP_OPTIONS -o 'PreferredAuthentications=publickey' -o 'PasswordAuthentication=no' -o 'IdentitiesOnly=yes'"
-  export SSH_PASSPHRASE="$PASSPHRASE"
+
+# Check if the remove flag is set
+if [ "${REMOVE_TARGET}" = true ]; then
+    ssh -p "${PORT}" -i "${KEY}" -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" "${USERNAME}@${HOST}" "rm -rf ${DESTINATION_DIR}"
 fi
 
-# Check if the -rm option is set
-# if [ "$REMOVE_EXISTING" = "true" ]; then
-  # Remove existing files on the remote server
- # ssh $SCP_OPTIONS -o "BatchMode yes" "$DESTINATION_SERVER" "rm -rf $DESTINATION_DIR/*"
-# fi
-
-
-# Utiliser SCP pour copier le contenu du dossier source vers le serveur distant
-scp -i "$SSH_KEY" -r "$SOURCE_DIR" "$DESTINATION_SERVER:$DESTINATION_DIR"
+# Copy files to the remote server
+scp -P "${PORT}" -i "${KEY}" -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -r "${SOURCE_DIR}" "${USERNAME}@${HOST}:${DESTINATION_DIR}"
