@@ -1,0 +1,29 @@
+name: Copy to Remote Server via SCP
+description: Copy files from a specified directory to a remote server via SCP.
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
+inputs:
+  source_dir:
+    description: "Source directory to copy"
+    required: true
+  destination_server:
+    description: "Remote server address (e.g., user@hostname)"
+    required: true
+  destination_dir:
+    description: "Remote server destination directory"
+    required: true
+  ssh_key:
+    description: "SSH key for authentication"
+    required: true
+
+outputs: {}
+
+branding:
+  icon: "upload-cloud"
+
+permissions:
+  contents: read
+
