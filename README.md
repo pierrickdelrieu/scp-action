@@ -1,4 +1,4 @@
-#  Transfer file to Remote Server via SCP GitHub Action
+#  📄 Transfer file to Remote Server via SCP GitHub Action
 
 ![Version](https://img.shields.io/github/v/release/pierrickdelrieu/scp-action)
 ![Issues](https://img.shields.io/github/issues/pierrickdelrieu/scp-action)
