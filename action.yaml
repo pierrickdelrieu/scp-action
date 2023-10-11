@@ -36,5 +36,5 @@ outputs: {}
 
 branding:
   icon: 'copy'
-  color: 'gray'
+  color: 'gray-dark'
 
