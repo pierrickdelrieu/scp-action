@@ -1,0 +1,21 @@
+name: Test Copy Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Copy to Remote Server
+      uses: ./ # Utilise l'action locale
+      with:
+        source_dir: ./example_folder
+        destination_server: ${{ secrets.DESTINATION_SERVER }}
+        destination_dir: /path/to/destination
+        ssh_key: ${{ secrets.SSH_KEY }}
