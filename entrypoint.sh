@@ -27,9 +27,9 @@ ssh-add $HOME/.ssh/id_rsa < $HOME/.ssh/passphrase
 
 
 # Check if the remove flag is set
-if [ "${REMOVE_DIR}" = true ]; then
-    ssh -p "${SSH_PORT}" -i "${SSH_KEY}" -o "StrictHostKeyChecking=no" "${SSH_USERNAME}@${HOST}" "rm -rf ${DESTINATION_DIR}"
-fi
+#if [ "${REMOVE_DIR}" = true ]; then
+#    ssh -p "${SSH_PORT}" -i "${SSH_KEY}" -o "StrictHostKeyChecking=no" "${SSH_USERNAME}@${HOST}" "rm -rf ${DESTINATION_DIR}"
+#fi
 
 
 
