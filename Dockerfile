@@ -1,3 +1,10 @@
 FROM alpine:latest
 
-RUN apk --no-cache add openssh-client
+# Install SSH and SCP client
+RUN apk add openssh-client
+
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
