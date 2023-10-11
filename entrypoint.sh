@@ -33,5 +33,5 @@ fi
 
 
 
-scp -i $HOME/.ssh/id_rsa -P "${SSH_PORT}" -o StrictHostKeyChecking=no -r "$GITHUB_WORKSPACE/${SOURCE_DIR}/" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
+scp -i $HOME/.ssh/id_rsa -P "${SSH_PORT}" -o StrictHostKeyChecking=no -r "$GITHUB_WORKSPACE/${SOURCE_DIR}/*" "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
 
