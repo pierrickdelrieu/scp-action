@@ -35,6 +35,6 @@ inputs:
 outputs: {}
 
 branding:
-  icon: "upload-cloud"
-  color: blue
+  icon: 'copy'
+  color: 'gray'
 
