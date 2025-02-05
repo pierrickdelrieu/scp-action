@@ -19,7 +19,7 @@ chmod 600 $HOME/.ssh/id_rsa
 
 # Create a passphrase file
 echo "$SSH_PASSPHRASE" > $HOME/.ssh/passphrase
-chmod 600 $HOME/.ssh/id_rsa
+chmod 600 $HOME/.ssh/passphrase
 
 # Add the key with passphrase to the SSH agent
 eval $(ssh-agent -s)
