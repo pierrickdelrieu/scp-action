@@ -10,8 +10,6 @@ SOURCE_DIR="$INPUT_SOURCE_DIR"
 DESTINATION_DIR="$INPUT_DESTINATION_DIR"
 REMOVE_DIR="$INPUT_RM"
 
-
-
 # Create an SSH key file
 mkdir -p $HOME/.ssh
 echo "$SSH_KEY" > $HOME/.ssh/id_rsa
@@ -25,14 +23,9 @@ chmod 600 $HOME/.ssh/passphrase
 eval $(ssh-agent -s)
 ssh-add $HOME/.ssh/id_rsa < $HOME/.ssh/passphrase
 
-
-
 # Check if the remove flag is set
 if [ "${REMOVE_DIR}" = true ]; then
-    ssh -p "${SSH_PORT}" -i "${SSH_KEY}" -o "StrictHostKeyChecking=no" "${SSH_USERNAME}@${HOST}" "rm -rf ${DESTINATION_DIR}/*"
+    ssh -p "${SSH_PORT}" -i "$HOME/.ssh/id_rsa" -o "StrictHostKeyChecking=no" "${SSH_USERNAME}@${HOST}" "rm -rf ${DESTINATION_DIR}/*"
 fi
 
-
-
-scp -i $HOME/.ssh/id_rsa -P "${SSH_PORT}" -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE/${SOURCE_DIR}/* "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
-
+scp -i "$HOME/.ssh/id_rsa" -P "${SSH_PORT}" -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE/${SOURCE_DIR}/* "${SSH_USERNAME}@${HOST}:${DESTINATION_DIR}"
